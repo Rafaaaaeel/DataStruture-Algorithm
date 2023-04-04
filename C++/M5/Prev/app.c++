@@ -70,16 +70,42 @@ class LinkedList {
 
             length++;
         }
+
+        void deleteLast() {
+            if (length == 0) return; 
+           
+            Node* temp = head;
+
+            if (length == 1) {
+                head = nullptr;
+                tail = nullptr;
+            } else {
+                Node* pre = head;
+                while(temp->next != nullptr) {
+                    pre = temp;
+                    temp = temp->next;
+                }
+                tail = pre; 
+                tail->next = nullptr;
+            }
+            length--;
+            delete temp;
+        }
 };
 
 int main() {
     LinkedList* myLinkedList = new LinkedList(1);
 
-    delete myLinkedList;
 
-    // myLinkedList->append(2);
-    // myLinkedList->append(3);
+    myLinkedList->append(2);
+    myLinkedList->append(3);
+    myLinkedList->append(4);
+    myLinkedList->append(5);
+    myLinkedList->append(6);
+    myLinkedList->append(7);
     // myLinkedList->printList();
+    myLinkedList->deleteLast();
+    myLinkedList->printList();
     // myLinkedList->getHead();
     // myLinkedList->getTail();
     // myLinkedList->getLength()

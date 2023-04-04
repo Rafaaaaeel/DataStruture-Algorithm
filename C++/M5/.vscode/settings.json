@@ -3,7 +3,12 @@
         "ratio": "cpp",
         "__split_buffer": "cpp",
         "string": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "chrono": "cpp",
+        "variant": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "string_view": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
