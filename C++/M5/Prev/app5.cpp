@@ -55,13 +55,30 @@ class LinkedList {
             }
             length++;
         }
+
+        void reverse() 
+        {
+            Node* temp = head;
+            head = tail;
+            tail = temp; 
+            Node* after = temp->next;
+            Node* before = nullptr;
+
+            for (int i = 0; i < length; i++) 
+            {
+                after = temp->next;
+                temp->next = before;
+                before = temp;
+                temp = after;
+            }
+        }
 };
 
 int main() {
     LinkedList* myList = new LinkedList(4);
     myList->append(8);
     myList->append(16);
-
+    myList->reverse();
 
 
     myList->printlist();

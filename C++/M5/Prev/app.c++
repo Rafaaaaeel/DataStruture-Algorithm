@@ -91,6 +91,23 @@ class LinkedList {
             length--;
             delete temp;
         }
+
+        void reverse() 
+        {
+            Node* temp = head; 
+            head = tail; 
+            tail = temp;
+            Node* after = temp->next;
+            Node* before = nullptr;
+
+            for (int i = 0; i < length; i++) 
+            {
+                after = temp->next;
+                temp->next = before;
+                before = temp;
+                temp = after;
+            }
+        }
 };
 
 int main() {
@@ -101,11 +118,8 @@ int main() {
     myLinkedList->append(3);
     myLinkedList->append(4);
     myLinkedList->append(5);
-    myLinkedList->append(6);
-    myLinkedList->append(7);
-    // myLinkedList->printList();
-    myLinkedList->deleteLast();
-    myLinkedList->printList();
+    myLinkedList->reverse();
+    
     // myLinkedList->getHead();
     // myLinkedList->getTail();
     // myLinkedList->getLength()
