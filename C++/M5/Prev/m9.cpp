@@ -182,20 +182,22 @@ class LinkedList
             length--; 
        }
 
+       
        void reverse()
        {
             Node* temp = head;
             head = tail;
             tail = temp;
+
             Node* after = temp->next;
             Node* before = nullptr;
 
-            for (int i = 0; i < length; i++) 
+            for (int i = 0; i < length; i++)
             {
                 after = temp->next;
                 temp->next = before;
-                before = temp; 
-                temp = after;    
+                before = temp;
+                temp = after;
             }
        }
 
@@ -205,13 +207,8 @@ int main()
 {
     LinkedList* myList = new LinkedList(1);
     myList->append(2);
+    myList->append(3);
     myList->append(4);
-    myList->append(5);
-    myList->prepend(0);
-    myList->insert(3, 3);
-    myList->deleteLast();
-    myList->deleteFirst();
-    myList->deleteNode(1);
     myList->reverse();
     myList->printList();
     myList->getHead();
