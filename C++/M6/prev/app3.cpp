@@ -207,6 +207,7 @@ int main()
     list->append(2);
     list->append(4);
     list->append(5);
+    delete list;
     list->printList();
     list->getHead();
     list->getTail();
