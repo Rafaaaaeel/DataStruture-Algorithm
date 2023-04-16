@@ -1,4 +1,5 @@
 #include <iostream>
+#include "my_class.h"
 
 using namespace std;
 
@@ -64,12 +65,13 @@ class Stack
 
 int main() 
 {
-    Stack* stack = new Stack(3);
-    stack->push(2);
-    stack->push(1);
-    stack->printStack();
+    // Stack* stack = new Stack(3);
+    // stack->push(2);
+    // stack->push(1);
+    // stack->printStack();
 
-    cout << "First pop: "<< stack->pop() << endl;
-    cout << "Second pop: "<< stack->pop() << endl;
-    stack->printStack();
+    // cout << "First pop: "<< stack->pop() << endl;
+    // cout << "Second pop: "<< stack->pop() << endl;
+    // stack->printStack();
+
 }
