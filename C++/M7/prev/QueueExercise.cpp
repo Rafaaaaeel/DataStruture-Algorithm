@@ -76,7 +76,7 @@ class Queue
             length--;
             return dequeuedValue;
         }
-};cd 
+}; 
 
 int main() 
 {
