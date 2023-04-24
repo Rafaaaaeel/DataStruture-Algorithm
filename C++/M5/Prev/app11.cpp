@@ -1,8 +1,9 @@
 #include <iostream>
 
+
 class Node 
 {
-    public: 
+    public:
         int value;
         Node* next;
 
@@ -15,12 +16,13 @@ class Node
 
 class LinkedList 
 {
-    private: 
+    private:
         Node* head;
         Node* tail;
         int length;
 
     public:
+
         LinkedList()
         {
             head = nullptr;
@@ -28,12 +30,23 @@ class LinkedList
             length = 0;
         }
 
-        void getHead()
+        void printList()
         {
-            std::cout << "Head: " << head->value << "\n"; 
+            Node* temp = head;
+
+            while(temp)
+            {
+                std::cout << temp->value << "\n";
+                temp = temp->next;
+            }
         }
 
-        void getTail() 
+        void getHead()
+        {
+            std::cout << "Head: " << head->value << "\n";
+        }
+
+        void getTail()
         {
             std::cout << "Tail: " << tail->value << "\n";
         }
@@ -43,23 +56,13 @@ class LinkedList
             std::cout << "Length: " << length << "\n";
         }
 
-        void printList()
-        {
-            Node* temp = head; 
-            while(temp)
-            {
-                std::cout << temp->value << "\n";
-                temp = temp->next;
-            }
-        }
-
         Node* get(int index)
-        {   
+        {
             if (index < 0 || index >= length) return nullptr;
             if (index == 0) return head;
             if (index == length - 1) return tail;
 
-            Node* temp = head; 
+            Node* temp = head;
 
             for (int i = 0; i < index; i++)
             {
@@ -67,18 +70,20 @@ class LinkedList
             }
 
             return temp;
+            
         }
 
         void set(int index, int value)
         {
             Node* temp = get(index);
-            if (temp)
+
+            if(temp)
             {
                 temp->value = value;
             }
         }
 
-        void append(int value) 
+        void append(int value)
         {
             Node* newNode = new Node(value);
 
@@ -98,34 +103,33 @@ class LinkedList
         void prepend(int value)
         {
             if (length == 0) return append(value);
-            
+
             Node* newNode = new Node(value);
+
             newNode->next = head;
             head = newNode;
             length++;
-
         }
 
         void insert(int index, int value)
         {
             if (index < 0 || index >= length) return;
             if (index == 0) return prepend(value);
-            if (index == length -1 ) return append(value);
+            if (index == length - 1) return append(value);
 
-            Node* pre = get(index - 1);
-            Node* temp = pre->next;
             Node* newNode = new Node(value);
-
-            pre->next = newNode;
-            newNode->next = temp;
+            Node* temp = get(index - 1);
+            
+            newNode->next = temp->next;
+            temp->next = newNode;
             length++;
         }
 
         void deleteLast()
         {
             Node* temp = head;
-            
-            if (length == 1)
+
+            if(length == 1)
             {
                 head = nullptr;
                 tail = nullptr;
@@ -139,10 +143,8 @@ class LinkedList
                     temp = temp->next;
                 }
 
-                
-                tail = pre;    
+                tail = pre;
                 tail->next = nullptr;
-
             }
 
             delete temp;
@@ -151,35 +153,28 @@ class LinkedList
 
         void deleteFirst() 
         {
+            if (length == 1) return deleteLast();
 
             Node* temp = head;
-            if(length == 1) 
-            {
-                head = nullptr;
-                tail = nullptr;
-            } else 
-            {
-                head = head->next;
-            }
+            head = head->next;
 
             delete temp;
             length--;
-
         }
 
-        void deleteNode(int index)
+        void deleteNode(int index, int value)
         {
             if (index < 0 || index >= length) return;
             if (index == 0) return deleteFirst();
-            if (index == length -1) return deleteLast();
+            if (index == length - 1) return deleteLast();
 
             Node* pre = get(index - 1);
             Node* temp = pre->next;
-
+            
             pre->next = temp->next;
+
             delete temp;
             length--;
-            
         }
 
         void reverse()
@@ -187,6 +182,7 @@ class LinkedList
             Node* temp = head;
             head = tail;
             tail = temp;
+
             Node* after = temp->next;
             Node* before = nullptr;
 
@@ -198,18 +194,22 @@ class LinkedList
                 temp = after;
             }
         }
+
 };
 
 
-int main()
+int main() 
 {
     LinkedList* list = new LinkedList();
+
     list->append(1);
     list->append(2);
     list->append(3);
-    list->insert(1,421);
-    list->set(1, 20);
-    list->deleteNode(1);
+    list->append(4);
+    list->prepend(0);
+    list->insert(1,89);
+    list->deleteLast();
+    list->deleteFirst();
     list->reverse();
     list->printList();
     list->getHead();
