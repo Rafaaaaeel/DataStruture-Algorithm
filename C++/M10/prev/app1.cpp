@@ -24,7 +24,8 @@ class Graph
 
         bool addVertex(std::string vertex)
         {
-            if (adjlist.count(vertex) == 0) {
+            if (adjlist.count(vertex) == 0) 
+            {
                 adjlist[vertex];
                 return true;
             }
